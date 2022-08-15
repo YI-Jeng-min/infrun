@@ -1,0 +1,53 @@
+.nav__flex {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-pack: justify;
+-webkit-justify-content: space-between;
+-ms-flex-pack: justify;
+justify-content: space-between;
+-webkit-box-align: center;
+-webkit-align-items: center;
+-ms-flex-align: center;
+align-items: center;
+}
+h2 {
+text-align: center;
+}
+
+
+.join_check{
+text-align: center;
+
+}
+.join_explain{
+text-align: center;
+border: 1px solid #ccc;
+height: 800px;
+width:  600px;
+margin-top:  40px;
+display: block;
+position: relative;
+ margin: 0 auto;
+ margin-top : 20px;
+ margin-bottom: 20px;
+ padding: 10px;
+
+}
+
+.join_check {
+color: #999;
+}
+
+#target_btn {
+text-align: center;
+width: 150px;
+height: 40px;
+display: block;
+position: relative;
+top:20px;
+margin: 0 auto;
+
+
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <input id='target_btn' type='button' value='버튼'/>
+
+    <div>SOULER의 이용약관에 모두 동의 합니다</div>
+    <div>  
+      <input type='radio'
+                name="ch"
+             value='활성화' 
+             onclick='btnActive()'/> 동의합니다
+      <input type='radio' 
+                name="ch"
+             value='비활성화' 
+             onclick='btnDisabled()'/> 비동의
+    </div>
+    
+
+
+
+</body>
+<script>
+function btnActive()  {
+  const target = document.getElementById('target_btn');
+  target.disabled = false;
+}
+
+function btnDisabled()  {
+  const target = document.getElementById('target_btn');
+  target.disabled = true;
+}
+
+    </script>
+</html>

@@ -1,0 +1,653 @@
+멘토 김광진 (router128@hanmail.net)
+
+베넷핏 : 교촌치킨(웨지감자세트) 2마리 , 도전유효기간 : 2022.07.20일까지 
+
+팀명 : 물망초 
+팀원 : 이민지/김훈겸/이정민/양서린/하종현/안민준
+일시 : 2022.07.13 09:00-12:50 
+
+
+> 모델링 
+
+URL : https://aquerytool.com/aquerymain/index/?rurl=aaa8b61e-df34-4a93-9445-be3a8d19a365&
+Password : 73pb63
+
+
+
+
+> 객체지향프로그래밍(OOP, Object-Oriented Programming) : JAVA 
+
+객체?
+사람/동물/사물/주문/예약/감정... 지극히 개념적인 것. 
+
+. 고유한 속성
+. 타인도 알 수 있는 것 
+. 사전에 등록된 명사 
+
+A : "우리 오늘 점심 때 라면 먹을래?"
+B : "응, 좋아!"
+
+          라면   <--- 객체(o)
+"오뚜기진라면"    <--- 인스턴스:instance 
+
+
+> Primitive Type
+
+정수형(4)
+. byte      ...  8 bit 정수(작은수) : 2의 8승= 2x2x2x2x2x2x2x2=256 [-128~-1,0~127] <-- [-(2^n)/2~-1, 0, +(2^n)/2-1]
+. short     ... 16 bit 정수(큰수) 
+. int       ... 32 bit 정수(더큰수) 
+. long      ... 64 bit 정수(엄청큰수) 
+실수형(2)
+. float     ... 32 bit 실수
+. double    ... 64 bit 실수
+문자형(1)
+. char      ... 16 bit 유니코드
+불린형(1)
+. boolean   ... true / false 
+
+비트(bit) : 컴퓨터에서 정보를 표시하는 최소 단위(o, 1)
+
+( 1 bit) : 2의 1승 = 2가지
+0
+1
+
+(2 bit) : 2의 2승 = 4가지
+00
+01
+10
+11
+
+(3 bit) : 2의 3승 = 8가지
+000
+010
+100
+110
+001
+011
+101
+111
+---------------------------------------------------------------------
+
+> 속성 + 기능까지 포함된 객체는 어떻게 표현하죠?  ---> class 
+
+(1) 사용자 정의 클래스(user-defined class) --- Student 
+(2) 내장 클래스(built-in class)---ArrayList / String / Integer / Double / Random / Date / Calendar etc
+
+학생 : 이름/나이/소속 + 출석하다()/공부하다()/시험보다()
+      --------------  -------------------------------
+          (속성)                  (기능)
+
+
+public class Student                              // 클래스 이름
+{
+      private String name;                        // 속성:Property:멤버필드
+      private int age;
+
+      public Student()                            // 생성자 1
+      {
+      
+      }
+      
+      public Student(String name, int age)        // 생성자 2
+      {
+         this.name = name;
+         this.age  = age;
+      }
+
+      public String getName()                     // 기능:메소드:멤버함수
+      {
+         return this.name;
+      }
+
+      public void setName(String name)
+      {
+         this.name = name;
+      }
+
+      public String getName()
+      {
+         return this.name;
+      }
+
+      public void setAge(int age)
+      {
+         this.age = age;
+      }
+}
+
+
+Student s1 = new Student();
+s1.setName("Tom");             // private String name;
+s1.name = "Tom";               // public String name;
+s1.setAge(20);
+
+
+Student s1 = new Student("Tom", 20);
+
+* 생성자 오버로딩 : 전달되는 매개변수의 타입이나 개수에 따라서 다양한 생성자를 사용할 수 있는 기능.
+
+
+
+> 추상 클래스(Abstract Class)
+
+(TYPE)    (SUBTYPE)
+구기종목 : 축구/야구/농구/배구/탁구
+가전제품 : TV/냉장고/세탁기/전자렌지
+모양    : 세모/네모/동그라미/마름모/별모양
+색깔    : 빨강/노랑/파랑/초록
+병      : 술병/물병/약병/꽃병 
+
+class C extends A      (o)
+class C extends A, B   (x)  // 자바에서는 다중상속이 안됨! 
+
+
+객체 --> Primitive Type --> Class(사용자/내장)--> Abstract Class(사용자/내장)--> Interface(사용자/내장)
+
+> 인터페이스(interface) : 객체들간에 발생할 수 있는 행위/동작/상태를 미리 정의해 놓은 것.
+
+      face <----> face 
+           . talk()
+           . fight()
+
+public interface Human 
+{
+      void talk();
+      void fight();
+}    
+
+void talk()   // 선언부(head)
+{
+    ...       // 구현부(body)
+}
+
+
+public class Boy implements Human 
+{
+      @Override // 재정의
+      public void talk()
+      {
+            System.out.println("Boy is talking...");
+      }
+
+      @Override
+      public void fight()
+      {
+            System.out.println("Boy is fighting...");
+      }
+}
+
+public interface ITV 
+{
+      void on();
+      void off();
+      void switchChannel(int channel);
+}
+
+
+Student s1 = new Student();  // 인스턴스 생성(o)
+Human   h1 = new Human();    // 인스턴스 생성(x)
+Boy     h1 = new Boy();      // 인스턴스 생성(o)
+Human   h1 = new boy();      // 인스턴스 생성(o)
+
+ex) List list = new ArrayList();
+
+                        ／ built-in    ／ built-in           ／ built-in
+(1) Primitive Type ---(2) Class ---  (3) Abstract Class ---(4) Interface    <<< Data Type 
+                        ＼ user-def    ＼ user-def           ＼ user-def                     
+
+---------------------------------------------------------------------
+
+> 자바의 내장 인터페이스(built-in interface)
+
+. Serializable
+
+. Cloneable
+
+. Readable
+
+. Appendable
+
+. Closeable
+
+. AutoCloseable
+
+. Observable
+
+. Iterable
+
+. Comparable
+
+. Runnable
+
+Callable
+
+Repeatable
+
+
+> 자바의 4대 핵심 기능 : 
+
+(1) 캡슐화(encapsulation) : 속성과 기능을 클래스 내부에 집어넣는 행위
+         -- > en(make )  + capsule(우리가 배운 '클래스'?) + tion
+    (1.1)정보은닉(information hiding) : 속성의 한정자를 public -> private로 바꾸는 행위
+
+(2) 상속(inheritance) : 클래스나 추상 클래스를 상속받는 행위     
+
+(3) 다형성(polymorphism) <--- poly(=many) + morph(=form)
+    (3.1) 서브타입 다형성(subtype polymorphism)
+    (3.2) 매개변수 다형성(parametric polymorphism)
+    (3.3) 오버라이딩, 오버로딩도 다형성의 개념
+    * Do the task in different ways.
+
+(4) 직렬화(Serialization) : 네트워크에서 파일을 전송할 때, 데이터의 전송효율을 높이기 위해서 전송 데이터를 바이트 코드 형태로 바꾸는 행위.
+
+    
+
+     (1)                                    (2)
+      ▩                                     ▩
+      ▩        '   '    '   '               ▩
+      ▩     '  '   '   '   '  '  '  '       ▩
+      ▩    '  '  '  '  '  '  '  '  '  '     ▩
+      ▩   '  '  '  '  '  '  '  '   '  '     ▩ 
+    <--- '  '   '   '  '  '  '  '  '  '   <---  ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' 
+      ▩     '  '  '  '  '  '  '  '  '       ▩          (Serialization 직렬화)
+      ▩   '  '  '  '  '  '  '  '  '         ▩
+      ▩     '   '   '  '  '  '  '  ''       ▩
+      ▩   '   '   '   '   '  '   '  '       ▩
+      ▩     '  '  ' '   '  '  '   '         ▩
+      ▩         '  '  '  '  '  '            ▩ 
+     (1)                                    (2)
+
+
+Student s1 = new Student(); '
+
+
+Student s1 = new Student("Tomson", 28);
+Student s2 = new Student("Jack",   25);
+Student s3 = new Student("Bill",   24);
+Student s4 = new Student("John",   26);
+Student s5 = new Student("Steve",  28);
+
+ArrayList<Student> list = new ArrayList<Student>();
+
+list.add(s1);
+list.add(s2);
+list.add(s3);
+list.add(s4);
+list.add(s5);
+
+list = { s1, s2, s3, s4, s5 }
+
+ArrayList<String> list = new ArrayList<String>();
+ArrayList<String> list = new ArrayList<>();   // 타입 추론 인정됨.
+
+list.add("A");
+list.add("B");
+list.add("C");
+list.add("D");
+
+String s = list.get(0);
+
+
+ArrayList list = new ArrayList();  // 타입이 지정되지 않으면 기본값으로 Object 
+list.add("A");
+list.add("B");
+list.add("C");
+list.add("D");
+
+String s = (String) list.get(o); // 형변환(type casting)이 필요함. 왜? 처음에 타입을 지정하지 않았어.
+
+
+ArrayList list = new ArrayList();  // 타입이 지정되지 않으면 기본값으로 Object 
+list.add("A");
+list.add(1);
+list.add(new Float(2.5));
+---------------------------------------------------------------------
+
+회원 관리 = { 회원1, 회원2, 회원3, 회원4, 회원5, ... } <-- 데이터 집합 : 엔티티(Entity)
+
+회원 관리               MEMBERINFO / MEMBERS / T_MEMBER / TBL_MEMBER 
+---------------------------------------------------------------------
+회원 아이디             MB_ID VARCHAR2(20) NOT NULL...PK
+회원 비밀번호           MB_PW VARCHAR2(20) NOT NULL,
+회원 이름               MB_NAME VARCHAR2(20) NOT NULL,
+회원 이메일             MB_EMAIL VARCHAR2(20) NOT NULL
+---------------------------------------------------------------------
+
+CREATE TABLE T_MEMBER (
+      MB_ID VARCHAR2(20) NOT NULL,
+      MB_PW VARCHAR2(20) NOT NULL,
+      MB_NAME VARCHAR2(20) NOT NULL,
+      MB_EMAIL VARCHAR2(20) NOT NULL,
+      CONSTRAINT PK_MEMBER PRIMARY KEY (MB_ID)
+);
+
+CREATE TABLE T_...(
+
+);
+
+쌤! 제가 쿼리를 통해서 테이블을 만들고 있는데, 더 편리한 방법이 없나요?
+이떠요. 뭐죠? DB 설계툴요.
+
+(1)  https://www.erwin.com  (1위)   <--- 네카라쿠배당토직야.
+(2)  https://www.erdcloud.com 
+(3)  https://www.aquerytool.com , https://aquerytool.com (국내 1위, 최고의 툴!)
+
+------------------------------------------------------------------------------------------
+[최종 프로젝트 MySQL 서버 구축 정보]
+
+- mysql : 8.0.26
+
+host   : project-db-stu.ddns.net
+port r : 3307
+user   : sonsu
+pass   : 12345
+db     : sonsu
+
+
+1969 12 20 16:13:16 ---> 1969.12.20 
+
+
+19691220 --->datetime(19691220 000000)
+
+MSG_SEQ INT NOT NULL AUTO_INCREMENT \
+
+
+> MySQL int와 int unsigned 차이
+
+int          ... 32 bit 정수 = 2x2x2x2x ...2x2x2x2  (-2147483648~-1,0~2147483647) 대략 42억개.
+int unsigned ... 32 bit 정수 = 2x2x2x2x ...2x2x2x2  (0~2147483647 + 2147483648)   대략 42억개.
+
+* 그럼 100억개는요? (bigint unsigned)
+
+SELECT REPORT_NAME FROM REPORT;
+SELECT REPORT_NAME FROM T_REPORT;
+SELECT REPORT_NAME FROM TBL_REPORT;
+
+
+ALTER TABLE TBL_FINDING
+     ADD CONSTRAINT FK_TBL_FINDING_FIND_NICK_TBL_USER_USER_NICK FOREIGN KEY (FIND_NICK)
+         REFERENCES TBL_USER (USER_NICK) ON DELETE RESTRICT ON UPDATE RESTRICT	Error Code: 1822. Failed to add the foreign key constraint. Missing index for constraint 'FK_TBL_FINDING_FIND_NICK_TBL_USER_USER_NICK' in the referenced table 'TBL_USER'	0.016 sec
+
+
+
+SELECT A.USER_NICK
+FROM TBL_USER A, TBL_FINDING B
+WHERE A.USER_ID = B.USER_ID;
+
+부모 테이블의 PK와 자식테이블의 FK의 관계를 정책으로 정의해보자.
+
+ON DELETE RESTRICT : 부모 테이블의 키를 삭제 못함(PK가 다른테이블에서 FK로 씌이고 있는 경우에)
+ON DELETE CASCADE  : 부모 테이블의 키가 삭제되면, 자식테이블 FK값도 같이 삭제함.
+ON DELETE SET NULL : 부모 테이블의 키가 삭제되면, 자식테이블 FK값을 NULL로 변경함.
+ON DELETE SET DEFAULT : 부모 테이블의 키가 삭제되면, 자식테이블 FK값을 DEFAULT값으로 변경.
+ON DELETE NO ACTION : 부모 테이블의 키가 삭제되면, 자식테이블 FK값을 그대로 놔둔다.
+--------------------------------------------------------------------------------------
+최종 프로젝트 SQL문 
+
+-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+
+-- TBL_USER Table Create SQL
+CREATE TABLE TBL_USER
+(
+    `USER_ID`    VARCHAR(30)    NOT NULL    COMMENT '회원 아이디', 
+    `USER_PW`    VARCHAR(60)    NOT NULL    COMMENT '회원 비밀번호', 
+    `USER_NICK`  VARCHAR(20)    NOT NULL    COMMENT '회원 닉네임', 
+    `USER_DATE`  DATETIME       NOT NULL    DEFAULT NOW() COMMENT '회원 가입날짜', 
+    `USER_TEL`   VARCHAR(20)    NOT NULL    COMMENT '회원 연락처', 
+    `USER_TYPE`  CHAR(1)        NOT NULL    COMMENT '회원 유형', 
+     PRIMARY KEY (USER_ID)
+);
+
+ALTER TABLE TBL_USER COMMENT '회원 테이블';
+
+CREATE UNIQUE INDEX UQ_TBL_USER_1
+    ON TBL_USER(USER_NICK);
+
+
+-- TBL_FINDING Table Create SQL
+CREATE TABLE TBL_FINDING
+(
+    `FIND_SEQ`         INT UNSIGNED    NOT NULL    AUTO_INCREMENT COMMENT '찾기 번호', 
+    `USER_ID`          VARCHAR(30)     NOT NULL    COMMENT '작성자 아이디', 
+    `UPLOAD_DATE`      DATETIME        NOT NULL    DEFAULT NOW() COMMENT '작성날짜', 
+    `FIND_NAME`        VARCHAR(30)     NOT NULL    COMMENT '이름', 
+    `FIND_BIRTHDATE`   DATETIME        NOT NULL    DEFAULT NOW() COMMENT '생년월일', 
+    `FIND_GENDER`      CHAR(1)         NOT NULL    COMMENT '성별', 
+    `FIND_HANDICAPED`  CHAR(1)         NOT NULL    COMMENT '장애여부', 
+    `MISSING_DATE`     DATETIME        NOT NULL    DEFAULT NOW() COMMENT '실종일자', 
+    `MISSING_REGION`   VARCHAR(20)     NOT NULL    COMMENT '실종지역', 
+    `FIND_FEATURE`     VARCHAR(300)    NOT NULL    COMMENT '특징', 
+    `FIND_LOOK`        VARCHAR(300)    NOT NULL    COMMENT '인상착의', 
+    `FIND_DESC`        TEXT            NOT NULL    COMMENT '설명', 
+    `REAL_FACE`        VARCHAR(300)    NOT NULL    COMMENT '실제사진', 
+     PRIMARY KEY (FIND_SEQ, USER_ID, REAL_FACE)
+);
+
+ALTER TABLE TBL_FINDING COMMENT '찾기 테이블';
+
+ALTER TABLE TBL_FINDING
+    ADD CONSTRAINT FK_TBL_FINDING_USER_ID_TBL_USER_USER_ID FOREIGN KEY (USER_ID)
+        REFERENCES TBL_USER (USER_ID) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- TBL_MESSAGE Table Create SQL
+CREATE TABLE TBL_MESSAGE
+(
+    `MSG_SEQ`          INT UNSIGNED    NOT NULL    AUTO_INCREMENT COMMENT '쪽지순번', 
+    `MSG_CONTENT`      TEXT            NOT NULL    COMMENT '메세지내용', 
+    `MSG_DATE`         DATETIME        NOT NULL    DEFAULT NOW() COMMENT '보낸날짜', 
+    `MSG_SENDER_ID`    VARCHAR(30)     NOT NULL    COMMENT '발신자', 
+    `MSG_RECEIVER_ID`  VARCHAR(30)     NOT NULL    COMMENT '수신자', 
+     PRIMARY KEY (MSG_SEQ)
+);
+
+ALTER TABLE TBL_MESSAGE COMMENT '메시지 테이블';
+
+ALTER TABLE TBL_MESSAGE
+    ADD CONSTRAINT FK_TBL_MESSAGE_MSG_SENDER_ID_TBL_USER_USER_ID FOREIGN KEY (MSG_SENDER_ID)
+        REFERENCES TBL_USER (USER_ID) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- TBL_REPORT Table Create SQL
+CREATE TABLE TBL_REPORT
+(
+    `REPORT_SEQ`      INT UNSIGNED    NOT NULL    AUTO_INCREMENT COMMENT '제보 번호', 
+    `USER_ID`         VARCHAR(30)     NOT NULL    COMMENT '작성자 아이디', 
+    `UPLOAD_DATE`     DATETIME        NOT NULL    DEFAULT NOW() COMMENT '작성날짜', 
+    `PERSON_NAME`     VARCHAR(30)     NOT NULL    COMMENT '실종자 이름', 
+    `GENDER`          CHAR(1)         NOT NULL    COMMENT '성별', 
+    `REPORT_DATE`     DATETIME        NOT NULL    DEFAULT NOW() COMMENT '발견날짜', 
+    `REPORT_REGION`   VARCHAR(20)     NOT NULL    COMMENT '발견지역', 
+    `REPORT_FEATURE`  VARCHAR(300)    NOT NULL    COMMENT '특징', 
+    `REPORT_LOOK`     VARCHAR(300)    NOT NULL    COMMENT '인상착의', 
+    `REPORT_DESC`     TEXT            NOT NULL    COMMENT '설명', 
+    `REPORT_PHOTO`    VARCHAR(300)    NOT NULL    COMMENT '제보사진', 
+     PRIMARY KEY (REPORT_SEQ)
+);
+
+ALTER TABLE TBL_REPORT COMMENT '제보 테이블';
+
+ALTER TABLE TBL_REPORT
+    ADD CONSTRAINT FK_TBL_REPORT_USER_ID_TBL_USER_USER_ID FOREIGN KEY (USER_ID)
+        REFERENCES TBL_USER (USER_ID) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- TBL_DEEP Table Create SQL
+CREATE TABLE TBL_DEEP
+(
+    `DEEP_SEQ`     INT UNSIGNED    NOT NULL    COMMENT '딥러닝 순번', 
+    `FIND_SEQ`     INT UNSIGNED    NOT NULL    COMMENT '찾기 번호', 
+    `DEEP_RESULT`  VARCHAR(300)    NOT NULL    COMMENT '딥러닝 결과사진', 
+    `DEEP_DATE`    DATETIME        NOT NULL    DEFAULT NOW() COMMENT '딥러닝 날짜', 
+     PRIMARY KEY (DEEP_SEQ)
+);
+
+ALTER TABLE TBL_DEEP COMMENT '딥러닝 테이블';
+
+ALTER TABLE TBL_DEEP
+    ADD CONSTRAINT FK_TBL_DEEP_FIND_SEQ_TBL_FINDING_FIND_SEQ FOREIGN KEY (FIND_SEQ)
+        REFERENCES TBL_FINDING (FIND_SEQ) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+--------------------------------------------------------------------------------------------------
+성별 : 남자('M'), 여자('F')
+
+백앤드 개발자 SQL문
+
+-- 테이블 ROW 갯수 확인
+SELECT count(*) 
+FROM TBL_USER;
+
+-- 조건에 맞는 ROW 조회
+SELECT USER_ID, USER_PW, USER_NICK, USER_DATE, USER_TEL, USER_TYPE
+FROM TBL_USER
+WHERE USER_ID = 'USER_ID 1';
+
+-- 모든 컬럼 PK기준 역순으로 조회
+SELECT USER_ID, USER_PW, USER_NICK, USER_DATE, USER_TEL, USER_TYPE
+FROM TBL_USER
+ORDER BY USER_ID DESC;
+
+-- 모든 컬럼 100건 조회
+SELECT USER_ID, USER_PW, USER_NICK, USER_DATE, USER_TEL, USER_TYPE
+FROM TBL_USER
+LIMIT 100;
+
+-- SELECT 값에 따라 수정된 다른 값을 출력
+SELECT USER_ID, 
+    CASE
+        WHEN USER_PW = 'A' THEN CONCAT(USER_PW, 'Type1')
+        WHEN USER_PW = 'B' THEN CONCAT(USER_PW, 'Type2')
+        WHEN USER_PW = 'C' THEN CONCAT(USER_PW, 'Type3')
+        ELSE CONCAT(USER_PW, 'Type4') END AS USER_PWType, 
+    USER_NICK, USER_DATE, USER_TEL, USER_TYPE
+FROM TBL_USER;
+
+-- 특정 컬럼 중복 제거
+SELECT DISTINCT USER_PW
+FROM TBL_USER;
+
+-- Group By 문과 Having문을 이용하여 Select
+SELECT USER_PW, AVG(<number_column>)
+FROM TBL_USER
+GROUP BY USER_PW
+HAVING AVG(<number_column>) > 50;
+
+-- 날짜 범위에 해당하는 ROW를 조회
+SELECT USER_ID, USER_PW, USER_NICK, USER_DATE, USER_TEL, USER_TYPE
+FROM TBL_USER
+WHERE USER_DATE BETWEEN '2015-10-01 23:59:59' AND '2015-11-30 23:59:59';
+
+-- 날짜별 통계
+SELECT DATE_FORMAT(USER_DATE,'%Y-%m-%d') AS USER_DATE, COUNT(*) AS count
+FROM TBL_USER
+GROUP BY DATE_FORMAT(USER_DATE,'%Y-%m-%d')
+ORDER BY DATE_FORMAT(USER_DATE,'%Y-%m-%d') DESC;
+
+-- Insert
+INSERT INTO TBL_USER
+    (USER_ID, 
+    USER_PW, 
+    USER_NICK, 
+    USER_DATE, 
+    USER_TEL, 
+    USER_TYPE)
+VALUES
+    ('USER_ID 1', 
+    'USER_PW 1', 
+    'USER_NICK 1', 
+    NOW(), 
+    'USER_TEL 1', 
+    'N');
+
+-- Insert된 Row의 Auto Increment값 조회
+SELECT LAST_INSERT_ID();
+
+-- Update
+UPDATE TBL_USER
+SET
+    USER_ID = 'USER_ID 1', 
+    USER_PW = 'USER_PW 1', 
+    USER_NICK = 'USER_NICK 1', 
+    USER_DATE = NOW(), 
+    USER_TEL = 'USER_TEL 1', 
+    USER_TYPE = 'N'
+WHERE USER_ID = 'USER_ID 1';
+
+-- Delete
+DELETE FROM TBL_USER
+WHERE USER_ID = 'USER_ID 1';
+
+-- 1일이 지난 데이터 삭제
+DELETE FROM TBL_USER
+WHERE USER_DATE < DATE_SUB(NOW(), INTERVAL 1 DAY);
+
+
+-- Inner Join을 이용한 조회
+SELECT t1.USER_ID, t1.USER_PW, t1.USER_NICK, t1.USER_DATE, t1.USER_TEL, t1.USER_TYPE, 
+    t2.USER_ID, t2.FIND_SEQ, t2.UPLOAD_DATE, t2.FIND_NAME, t2.FIND_BIRTHDATE, t2.FIND_GENDER, t2.FIND_HANDICAPED, t2.MISSING_DATE, t2.MISSING_REGION, t2.FIND_FEATURE, t2.FIND_LOOK, t2.FIND_DESC, t2.REAL_FACE, 
+    t3.USER_ID, t3.REPORT_SEQ, t3.UPLOAD_DATE, t3.PERSON_NAME, t3.GENDER, t3.REPORT_DATE, t3.REPORT_REGION, t3.REPORT_FEATURE, t3.REPORT_LOOK, t3.REPORT_DESC, t3.REPORT_PHOTO, 
+    t4.MSG_SENDER_ID, t4.MSG_SEQ, t4.MSG_CONTENT, t4.MSG_DATE, t4.MSG_RECEIVER_ID
+FROM TBL_USER t1 
+    INNER JOIN TBL_FINDING t2 ON t1.USER_ID = t2.USER_ID
+    INNER JOIN TBL_REPORT t3 ON t1.USER_ID = t3.USER_ID
+    INNER JOIN TBL_MESSAGE t4 ON t1.USER_ID = t4.MSG_SENDER_ID
+WHERE t1.USER_ID = 'USER_ID 1'
+LIMIT 100;
+
+-- Outer Join을 이용한 조회
+SELECT t1.USER_ID, t1.USER_PW, t1.USER_NICK, t1.USER_DATE, t1.USER_TEL, t1.USER_TYPE, 
+    t2.USER_ID, t2.FIND_SEQ, t2.UPLOAD_DATE, t2.FIND_NAME, t2.FIND_BIRTHDATE, t2.FIND_GENDER, t2.FIND_HANDICAPED, t2.MISSING_DATE, t2.MISSING_REGION, t2.FIND_FEATURE, t2.FIND_LOOK, t2.FIND_DESC, t2.REAL_FACE, 
+    t3.USER_ID, t3.REPORT_SEQ, t3.UPLOAD_DATE, t3.PERSON_NAME, t3.GENDER, t3.REPORT_DATE, t3.REPORT_REGION, t3.REPORT_FEATURE, t3.REPORT_LOOK, t3.REPORT_DESC, t3.REPORT_PHOTO, 
+    t4.MSG_SENDER_ID, t4.MSG_SEQ, t4.MSG_CONTENT, t4.MSG_DATE, t4.MSG_RECEIVER_ID
+FROM TBL_USER t1 
+    LEFT OUTER JOIN TBL_FINDING t2 ON t1.USER_ID = t2.USER_ID
+    LEFT OUTER JOIN TBL_REPORT t3 ON t1.USER_ID = t3.USER_ID
+    LEFT OUTER JOIN TBL_MESSAGE t4 ON t1.USER_ID = t4.MSG_SENDER_ID
+WHERE t1.USER_ID = 'USER_ID 1'
+LIMIT 100;
+
+-- 해당 테이블을 참조하는 테이블의 최신 Row만 조회
+SELECT t1.USER_ID, t1.USER_PW, t1.USER_NICK, t1.USER_DATE, t1.USER_TEL, t1.USER_TYPE, 
+    t2.USER_ID, t2.FIND_SEQ, t2.UPLOAD_DATE, t2.FIND_NAME, t2.FIND_BIRTHDATE, t2.FIND_GENDER, t2.FIND_HANDICAPED, t2.MISSING_DATE, t2.MISSING_REGION, t2.FIND_FEATURE, t2.FIND_LOOK, t2.FIND_DESC, t2.REAL_FACE, 
+    t3.USER_ID, t3.REPORT_SEQ, t3.UPLOAD_DATE, t3.PERSON_NAME, t3.GENDER, t3.REPORT_DATE, t3.REPORT_REGION, t3.REPORT_FEATURE, t3.REPORT_LOOK, t3.REPORT_DESC, t3.REPORT_PHOTO, 
+    t4.MSG_SENDER_ID, t4.MSG_SEQ, t4.MSG_CONTENT, t4.MSG_DATE, t4.MSG_RECEIVER_ID
+FROM TBL_USER t1 
+    LEFT OUTER JOIN TBL_FINDING t2 ON t1.USER_ID = t2.USER_ID
+    LEFT OUTER JOIN TBL_REPORT t3 ON t1.USER_ID = t3.USER_ID
+    LEFT OUTER JOIN TBL_MESSAGE t4 ON t1.USER_ID = t4.MSG_SENDER_ID
+    -- TBL_MESSAGE 테이블의 마지막 Row만 조회 하기 위한 JOIN
+    LEFT OUTER JOIN TBL_MESSAGE t4_lastrow ON 
+        (t1.USER_ID = t4_lastrow.MSG_SENDER_ID AND t4.MSG_SEQ < t4_lastrow.MSG_SEQ)
+WHERE t1.USER_ID = 'USER_ID 1' AND 
+    -- TBL_MESSAGE 테이블의 마지막 Row만 조회 하기 위한 WHERE
+    t4_lastrow.MSG_SEQ IS NULL
+LIMIT 100;
+
+-- TBL_USER 테이블을 참조하는 테이블의 Row 수 구하기
+SELECT t1.USER_ID, t1.USER_PW, t1.USER_NICK, t1.USER_DATE, t1.USER_TEL, t1.USER_TYPE, 
+    t2.USER_ID, t2.FIND_SEQ, t2.UPLOAD_DATE, t2.FIND_NAME, t2.FIND_BIRTHDATE, t2.FIND_GENDER, t2.FIND_HANDICAPED, t2.MISSING_DATE, t2.MISSING_REGION, t2.FIND_FEATURE, t2.FIND_LOOK, t2.FIND_DESC, t2.REAL_FACE, 
+    t3.USER_ID, t3.REPORT_SEQ, t3.UPLOAD_DATE, t3.PERSON_NAME, t3.GENDER, t3.REPORT_DATE, t3.REPORT_REGION, t3.REPORT_FEATURE, t3.REPORT_LOOK, t3.REPORT_DESC, t3.REPORT_PHOTO, 
+    t4.MSG_SENDER_ID, t4.MSG_SEQ, t4.MSG_CONTENT, t4.MSG_DATE, t4.MSG_RECEIVER_ID, 
+    t4_count.row_count
+FROM TBL_USER t1 
+    LEFT OUTER JOIN TBL_FINDING t2 ON t1.USER_ID = t2.USER_ID
+    LEFT OUTER JOIN TBL_REPORT t3 ON t1.USER_ID = t3.USER_ID
+    LEFT OUTER JOIN TBL_MESSAGE t4 ON t1.USER_ID = t4.MSG_SENDER_ID
+    -- TBL_MESSAGE Row 수 구하기
+    LEFT OUTER JOIN
+        (SELECT MSG_SENDER_ID, COUNT(MSG_SENDER_ID) AS row_count
+         FROM TBL_MESSAGE
+         GROUP BY MSG_SENDER_ID) t4_count
+    ON t1.USER_ID = t4_count.MSG_SENDER_ID
+ORDER BY t1.USER_ID DESC;
+
+
+DDL/DML/DCL/DQL 
+--------------------------------------------------------------------------
+Data Definition Language    정의 : CREATE TABLE/ DROP TABLE/ ALTER TABLE
+Data Manipulation Language  조작 : INSERT/UPDATE/DELETE (SELECT는 아님!)
+Data Control Language       제어 : GRANT/REVOKE/COMMIT/ROLLBACK
+Data Query Language         질의 : SELECT 
+--------------------------------------------------------------------------

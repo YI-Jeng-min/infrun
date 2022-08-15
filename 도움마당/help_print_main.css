@@ -1,0 +1,83 @@
+.bb{
+    border: 1px solid #777;
+    width: 600px;
+    height: 900px;
+    
+
+}
+.row1{
+    border-bottom: 1px solid red;
+    width: 600px;
+    height: 100px;
+    background-color: red;
+    font-size: 40px;
+    
+    color: aliceblue;
+    text-align: center;
+}
+.row2{
+    display: block;
+    position: relative;
+    top: 220px;
+    border-bottom: 1px solid #777;
+    width: 600px;
+    height: 100px;
+    background-color: #777;
+}
+
+
+
+
+
+.row1> p{
+
+    display: inline;
+    color: yellow;
+}
+
+.b{
+    border: 4px solid red;
+    border-radius: 10px;
+}
+
+.nn{
+    display: contents;
+    position: relative;
+    top: 70px;
+    text-align: center;
+    font-size: 25px;
+    right: 15px;
+}
+
+.add{
+    border: 5px solid #777;
+    width: 450px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+
+.call{
+    border: 5px solid #777;
+    width: 490px;
+    height: 100px;
+}
+
+.gg{
+    display: block;
+    position: relative;
+    top : 50px;
+
+
+    border: 1px solid ;
+    width: 800px;
+    height: 150px;
+}
+
+
+.print_main_btn{
+    display: block;
+    position: relative;
+    top : 100px;
+
+}
